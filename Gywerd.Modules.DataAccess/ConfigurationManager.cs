@@ -6,10 +6,16 @@ using System.Threading.Tasks;
 
 namespace Gywerd.Modules.DataAccess
 {
-    public class ConfigurationManager
+    public static class ConfigurationManager
     {
         #region Methods
-        public string GetConnectionString(string path, string name = null)
+        /// <summary>
+        /// Returns a ConnationString based on path and eventual name
+        /// </summary>
+        /// <param name="path">string</param>
+        /// <param name="name">string</param>
+        /// <returns>string</returns>
+        public static string GetConnectionString(string path, string name = null)
         {
             string res = "";
             return res;
