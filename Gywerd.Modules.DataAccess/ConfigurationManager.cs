@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,29 +13,30 @@ namespace Gywerd.Modules.DataAccess
         /// <summary>
         /// Returns a ConnationString based on path and eventual name
         /// </summary>
-        /// <param name="path">string</param>
-        /// <param name="name">string</param>
+        /// <param name="path">string - ip or path to SQL-server</param>
+        /// <param name="name">string - name of database</param>
         /// <returns>string</returns>
         public static string GetConnectionString(string path, string name = null)
         {
-            if (name.Equals(null))
+            string[] data = ReadFromFile();
+            if (name == null)
             {
-                return "Data Source=10.205.44.39,49172;Initial Catalog=DanielWeb2DbApp;Integrated Security=False;User ID=Aspit;Password=********;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                name = data[0];
             }
-            else
-            {
-                // Assume failure.
-                string returnValue = null;
+            string user = data[1];
+            string password = data[2];
+            string res = string.Format("Data Source={0};Initial Catalog={1};User ID={2};Password={3};", path, name, user, password);
+            return res;
+        }
 
-                // Look for the name in the connectionStrings section.
-                ConnectionStringSettings settings =
-                    ConfigurationManager.ConnectionStrings[name].ConnectionString;
+        private static string[] ReadFromFile()
+        {
+            string text = System.IO.File.ReadAllText(@".\DBPath\conn.config");
+            // Read each line of the file into a string array. Each element
+            // of the array is one line of the file.
+            string[] resData = text.Split(';');
 
-                // If found, return the connection string.
-                if (settings != null)
-                    returnValue = settings.ConnectionString;
-                return returnValue;
-            }
+            return resData;
         }
         #endregion
     }

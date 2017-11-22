@@ -9,7 +9,7 @@ namespace Gywerd.Modules.DataAccess
     public class RepositoryBase
     {
         #region Fields
-        protected Executor executor;
+        protected Executor executor = new Executor();
         #endregion
     }
 }
