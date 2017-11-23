@@ -23,7 +23,8 @@ namespace UnitTestProject1
             // arrange
             string sqlQuery = "SELECT * FROM Persons";
             //Executor executor = new Executor();
-            base.executor = new Executor();
+            InitOrClearExecutor();
+            InitConnection("10.205.44.39,49172");
             bool expected = false;
 
             // act  
@@ -45,7 +46,8 @@ namespace UnitTestProject1
             string first = "John";
             string last = "Smith";
             //Executor executor = new Executor();
-            base.executor = new Executor();
+            InitOrClearExecutor();
+            InitConnection("10.205.44.39,49172");
             bool expected = false;
 
             // act  
@@ -68,7 +70,8 @@ namespace UnitTestProject1
             string storedProcedureName = "GetPersonFromName";
             string first = "John";
             //Executor executor = new Executor();
-            base.executor = new Executor();
+            InitOrClearExecutor();
+            InitConnection("10.205.44.39,49172");
 
             // act
             DataSet ds = base.executor.Execute(storedProcedureName, first);

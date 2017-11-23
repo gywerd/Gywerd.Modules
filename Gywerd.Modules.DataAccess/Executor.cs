@@ -11,15 +11,14 @@ namespace Gywerd.Modules.DataAccess
     public class Executor
     {
         #region Fields
-        private string connectionString = ConfigurationManager.GetConnectionString("10.205.44.39,49172");
+        protected string connectionString;
         #endregion
 
         #region Constructors
         /// <summary>
         /// Empty constructor
         /// </summary>
-        public Executor() { }
-
+        internal Executor() { }
         #endregion
 
         #region Methods
@@ -80,7 +79,7 @@ namespace Gywerd.Modules.DataAccess
         /// </summary>
         /// <param name="storedProcedureName">string</param>
         /// <returns>List<string></returns>
-        public List<string> GetListOfProcedureParams(string storedProcedureName)
+        private List<string> GetListOfProcedureParams(string storedProcedureName)
         {
             List<string> resList = new List<string>();
             SqlConnection conn = new SqlConnection(connectionString);
@@ -98,7 +97,7 @@ namespace Gywerd.Modules.DataAccess
         #endregion
 
         #region Properties
-        public string ConnectionString { get => connectionString;}
+        public string ConnectionString { get => connectionString; set => connectionString = value; }
         #endregion
     }
 }
