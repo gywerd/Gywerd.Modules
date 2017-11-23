@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gywerd.Modules.DataAccess
 {
-    public class RepositoryBase
+    public class RepositoryBase : Executor
     {
         #region Fields
         protected Executor executor = new Executor();

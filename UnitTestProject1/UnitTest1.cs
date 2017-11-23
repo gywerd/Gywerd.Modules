@@ -12,7 +12,7 @@ using System.Windows;
 namespace UnitTestProject1
 {
     [TestClass]
-    public class UnitTest1
+    public class UnitTest1 : RepositoryBase
     {
         [TestMethod]
         /// <summary>
@@ -22,11 +22,12 @@ namespace UnitTestProject1
         {
             // arrange
             string sqlQuery = "SELECT * FROM Persons";
-            Executor executor = new Executor();
+            //Executor executor = new Executor();
+            base.executor = new Executor();
             bool expected = false;
 
             // act  
-            DataSet ds = executor.Execute(sqlQuery);
+            DataSet ds = base.executor.Execute(sqlQuery);
             string d = Convert.ToString(ds);
             // assert  
             bool actual = ds.Equals(null);
@@ -43,11 +44,12 @@ namespace UnitTestProject1
             string storedProcedureName = "GetPersonFromName";
             string first = "John";
             string last = "Smith";
-            Executor executor = new Executor();
+            //Executor executor = new Executor();
+            base.executor = new Executor();
             bool expected = false;
 
             // act  
-            DataSet ds = executor.Execute(storedProcedureName, first, last);
+            DataSet ds = base.executor.Execute(storedProcedureName, first, last);
             string d = Convert.ToString(ds);
             // assert  
             bool actual = ds.Equals(null);
@@ -65,10 +67,11 @@ namespace UnitTestProject1
             // arrange
             string storedProcedureName = "GetPersonFromName";
             string first = "John";
-            Executor executor = new Executor();
+            //Executor executor = new Executor();
+            base.executor = new Executor();
 
             // act
-                DataSet ds = executor.Execute(storedProcedureName, first);
+            DataSet ds = base.executor.Execute(storedProcedureName, first);
                 Assert.Fail("no exception thrown");
 
         }

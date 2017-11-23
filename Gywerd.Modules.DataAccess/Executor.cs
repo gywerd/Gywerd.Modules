@@ -80,7 +80,7 @@ namespace Gywerd.Modules.DataAccess
         /// </summary>
         /// <param name="storedProcedureName">string</param>
         /// <returns>List<string></returns>
-        private List<string> GetListOfProcedureParams(string storedProcedureName)
+        public List<string> GetListOfProcedureParams(string storedProcedureName)
         {
             List<string> resList = new List<string>();
             SqlConnection conn = new SqlConnection(connectionString);
