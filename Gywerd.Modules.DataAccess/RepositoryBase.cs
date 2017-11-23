@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Gywerd.Modules.DataAccess
 {
-    public class RepositoryBase : Executor
+    public class RepositoryBase
     {
         #region Fields
-        protected Executor executor;
+        public Executor executor;
         #endregion
 
         #region Constructors
@@ -19,7 +19,7 @@ namespace Gywerd.Modules.DataAccess
         /// <summary>
         /// Initiates new or Clears content of executor
         /// </summary>
-        protected void InitOrClearExecutor()
+        public void InitOrClearExecutor()
         {
             executor = new Executor();
         }
@@ -29,7 +29,7 @@ namespace Gywerd.Modules.DataAccess
         /// </summary>
         /// <param name="path">string</param>
         /// <param name="name">strng</param>
-        protected void InitConnection(string path, string name = null)
+        public void InitConnection(string path, string name = null)
         {
             if (name == null)
             {
@@ -61,6 +61,10 @@ namespace Gywerd.Modules.DataAccess
             return res;
         }
 
+        /// <summary>
+        /// Reads data string from file and separates string
+        /// </summary>
+        /// <returns>string[]</returns>
         private static string[] ReadFromFile()
         {
             string text = System.IO.File.ReadAllText(@".\DBPath\conn.config");

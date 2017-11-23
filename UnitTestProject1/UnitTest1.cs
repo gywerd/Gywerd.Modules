@@ -12,8 +12,10 @@ using System.Windows;
 namespace UnitTestProject1
 {
     [TestClass]
-    public class UnitTest1 : RepositoryBase
+    public class UnitTest1
     {
+        RepositoryBase CDR = new RepositoryBase();
+
         [TestMethod]
         /// <summary>
         /// Tests Executing a sqlQuery and receiving a DataSet
@@ -23,12 +25,12 @@ namespace UnitTestProject1
             // arrange
             string sqlQuery = "SELECT * FROM Persons";
             //Executor executor = new Executor();
-            InitOrClearExecutor();
-            InitConnection("10.205.44.39,49172");
+            CDR.InitOrClearExecutor();
+            CDR.InitConnection("10.205.44.39,49172");
             bool expected = false;
 
             // act  
-            DataSet ds = base.executor.Execute(sqlQuery);
+            DataSet ds = CDR.executor.Execute(sqlQuery);
             string d = Convert.ToString(ds);
             // assert  
             bool actual = ds.Equals(null);
@@ -46,12 +48,12 @@ namespace UnitTestProject1
             string first = "John";
             string last = "Smith";
             //Executor executor = new Executor();
-            InitOrClearExecutor();
-            InitConnection("10.205.44.39,49172");
+            CDR.InitOrClearExecutor();
+            CDR.InitConnection("10.205.44.39,49172");
             bool expected = false;
 
             // act  
-            DataSet ds = base.executor.Execute(storedProcedureName, first, last);
+            DataSet ds = CDR.executor.Execute(storedProcedureName, first, last);
             string d = Convert.ToString(ds);
             // assert  
             bool actual = ds.Equals(null);
@@ -70,11 +72,11 @@ namespace UnitTestProject1
             string storedProcedureName = "GetPersonFromName";
             string first = "John";
             //Executor executor = new Executor();
-            InitOrClearExecutor();
-            InitConnection("10.205.44.39,49172");
+            CDR.InitOrClearExecutor();
+            CDR.InitConnection("10.205.44.39,49172");
 
             // act
-            DataSet ds = base.executor.Execute(storedProcedureName, first);
+            DataSet ds = CDR.executor.Execute(storedProcedureName, first);
                 Assert.Fail("no exception thrown");
 
         }
